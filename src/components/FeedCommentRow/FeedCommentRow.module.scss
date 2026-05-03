@@ -1,0 +1,126 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.row {
+  display: flex;
+  gap: 16px;
+  padding: 12px;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: background 0.1s ease, border-color 0.1s ease;
+
+  &:hover {
+    background: $color-surface-hover;
+    border-color: #d1d5db;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.thumbWrap {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  background: $color-surface-hover;
+
+  @include mobile {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.thumbEmpty {
+  width: 100%;
+  height: 100%;
+  background: $color-surface-hover;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metaLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar,
+.avatarEmpty {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: $color-surface-hover;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.writerName {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.replyBadge {
+  font-size: 11px;
+  color: $color-text-muted;
+  background: $color-surface-hover;
+  padding: 2px 6px;
+  border-radius: $radius-sm;
+}
+
+.date {
+  font-size: 12px;
+  color: $color-text-muted;
+  margin-left: auto;
+}
+
+.content {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.feedLine {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  font-size: 12px;
+  color: $color-text-muted;
+  min-width: 0;
+}
+
+.feedLabel {
+  flex-shrink: 0;
+}
+
+.feedTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}

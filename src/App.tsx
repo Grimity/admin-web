@@ -5,6 +5,7 @@ import { ProtectedRoute } from '@/components/ProtectedRoute/ProtectedRoute';
 import { LoginPage } from '@/pages/LoginPage/LoginPage';
 import { FeedListPage } from '@/pages/FeedListPage/FeedListPage';
 import { FeedDetailPage } from '@/pages/FeedDetailPage/FeedDetailPage';
+import { FeedCommentListPage } from '@/pages/FeedCommentListPage/FeedCommentListPage';
 import { PostListPage } from '@/pages/PostListPage/PostListPage';
 import { PostDetailPage } from '@/pages/PostDetailPage/PostDetailPage';
 import { PlaceholderPage } from '@/pages/PlaceholderPage/PlaceholderPage';
@@ -30,7 +31,7 @@ function App() {
               <Route path="/" element={<Navigate to="/feeds" replace />} />
               <Route path="/feeds" element={<FeedListPage />} />
               <Route path="/feeds/:id" element={<FeedDetailPage />} />
-              <Route path="/feed-comments" element={<PlaceholderPage title="피드 댓글" />} />
+              <Route path="/feed-comments" element={<FeedCommentListPage />} />
               <Route path="/posts" element={<PostListPage />} />
               <Route path="/posts/:id" element={<PostDetailPage />} />
               <Route

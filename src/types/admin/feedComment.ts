@@ -22,3 +22,23 @@ export interface AdminFeedComment {
   writer: AdminFeedCommentWriter;
   childComments: AdminFeedChildComment[];
 }
+
+export interface AdminFeedCommentListItemFeed {
+  id: string;
+  title: string;
+  thumbnail: string | null;
+}
+
+export interface AdminFeedCommentListItem {
+  id: string;
+  content: string;
+  createdAt: string;
+  parentId: string | null;
+  writer: AdminFeedCommentWriter;
+  feed: AdminFeedCommentListItemFeed;
+}
+
+export interface AdminFeedCommentListResponse {
+  nextCursor: string | null;
+  comments: AdminFeedCommentListItem[];
+}
