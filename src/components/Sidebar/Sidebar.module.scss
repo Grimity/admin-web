@@ -1,0 +1,83 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $sidebar-width;
+  height: 100vh;
+  background: $color-surface;
+  border-right: 1px solid $color-border;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+  z-index: 30;
+  transition: transform 0.2s ease;
+}
+
+.sidebarMobile {
+  box-shadow: $shadow-md;
+}
+
+.sidebarClosed {
+  transform: translateX(-100%);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 25;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  padding: 0 8px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.navItem {
+  display: block;
+  padding: 10px 12px;
+  border-radius: $radius-md;
+  font-size: 14px;
+  color: $color-text;
+
+  &:hover {
+    background: $color-surface-hover;
+  }
+}
+
+.navItemActive {
+  background: $color-primary;
+  color: #fff;
+
+  &:hover {
+    background: $color-primary-hover;
+  }
+}
+
+.logout {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid $color-border;
+  background: transparent;
+  border-radius: $radius-md;
+  color: $color-text-muted;
+  font-size: 14px;
+  text-align: left;
+
+  &:hover {
+    background: $color-surface-hover;
+    color: $color-text;
+  }
+}

@@ -1,0 +1,63 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.root {
+  min-height: 100vh;
+}
+
+.main {
+  margin-left: $sidebar-width;
+  padding: 24px 32px;
+  max-width: $content-max-width;
+
+  @include mobile {
+    margin-left: 0;
+    padding: 16px;
+    padding-top: calc(#{$header-height} + 16px);
+  }
+}
+
+.header {
+  display: none;
+
+  @include mobile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $header-height;
+    padding: 0 16px;
+    background: $color-surface;
+    border-bottom: 1px solid $color-border;
+    z-index: 20;
+  }
+}
+
+.headerBrand {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.menuButton {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+
+  span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: $color-text;
+    border-radius: 2px;
+  }
+}
