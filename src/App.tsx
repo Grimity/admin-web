@@ -8,7 +8,6 @@ import { FeedDetailPage } from '@/pages/FeedDetailPage/FeedDetailPage';
 import { FeedCommentListPage } from '@/pages/FeedCommentListPage/FeedCommentListPage';
 import { PostListPage } from '@/pages/PostListPage/PostListPage';
 import { PostDetailPage } from '@/pages/PostDetailPage/PostDetailPage';
-import { PlaceholderPage } from '@/pages/PlaceholderPage/PlaceholderPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,7 +33,6 @@ function App() {
               <Route path="/feed-comments" element={<FeedCommentListPage />} />
               <Route path="/posts" element={<PostListPage />} />
               <Route path="/posts/:id" element={<PostDetailPage />} />
-              <Route path="/notices" element={<PlaceholderPage title="공지사항" />} />
             </Route>
           </Route>
           <Route path="*" element={<Navigate to="/feeds" replace />} />

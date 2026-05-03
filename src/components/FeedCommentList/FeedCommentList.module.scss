@@ -73,6 +73,22 @@
   align-items: flex-start;
 }
 
+.commentMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.childMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .avatar,
 .avatarEmpty {
   width: 32px;
@@ -145,4 +161,130 @@
   color: $color-primary;
   font-weight: 500;
   margin-right: 4px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: $color-surface-hover;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.mentionPrefix {
+  font-size: 12px;
+  color: $color-primary;
+  font-weight: 500;
+}
+
+.textarea {
+  width: 100%;
+  resize: vertical;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 8px 10px;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  color: $color-text;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.formFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.charCount {
+  font-size: 12px;
+  color: $color-text-muted;
+}
+
+.formActions {
+  display: flex;
+  gap: 8px;
+}
+
+.submit {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border: none;
+  border-radius: $radius-sm;
+  background: $color-primary;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-hover;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.cancel {
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 12px;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  color: $color-text;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: $color-surface-hover;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.formError {
+  font-size: 13px;
+  color: $color-danger;
+}
+
+.replyButton {
+  align-self: flex-start;
+  font: inherit;
+  font-size: 12px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: $color-text-muted;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.replyFormWrapper {
+  margin-left: 42px;
+
+  @include mobile {
+    margin-left: 16px;
+  }
 }
