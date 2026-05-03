@@ -1,0 +1,78 @@
+@use '@/styles/variables' as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.titleInput {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 14px;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $color-surface;
+  color: $color-text;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 1px;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.submit {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: $radius-md;
+  background: $color-primary;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-hover;
+  }
+
+  &:disabled {
+    background: $color-border;
+    color: $color-text-muted;
+    cursor: not-allowed;
+  }
+}
+
+.error {
+  padding: 12px 14px;
+  background: rgba($color-danger, 0.08);
+  border: 1px solid rgba($color-danger, 0.3);
+  color: $color-danger;
+  border-radius: $radius-md;
+  font-size: 14px;
+}
