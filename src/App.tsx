@@ -34,10 +34,6 @@ function App() {
               <Route path="/feed-comments" element={<FeedCommentListPage />} />
               <Route path="/posts" element={<PostListPage />} />
               <Route path="/posts/:id" element={<PostDetailPage />} />
-              <Route
-                path="/post-comments"
-                element={<PlaceholderPage title="게시글 댓글" />}
-              />
               <Route path="/notices" element={<PlaceholderPage title="공지사항" />} />
             </Route>
           </Route>
