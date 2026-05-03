@@ -1,0 +1,87 @@
+@use '@/styles/variables' as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.select {
+  font-size: 13px;
+  padding: 6px 28px 6px 10px;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  color: $color-text;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 1px;
+  }
+}
+
+.count {
+  font-size: 13px;
+  color: $color-text-muted;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.state {
+  padding: 32px 0;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+.error {
+  padding: 16px;
+  background: rgba($color-danger, 0.08);
+  border: 1px solid rgba($color-danger, 0.3);
+  color: $color-danger;
+  border-radius: $radius-md;
+  font-size: 14px;
+}
+
+.sentinel {
+  width: 100%;
+  height: 1px;
+}
+
+.loadingMore {
+  padding: 16px 0;
+  text-align: center;
+  color: $color-text-muted;
+  font-size: 13px;
+}
+
+.endMessage {
+  padding: 16px 0;
+  text-align: center;
+  color: $color-text-muted;
+  font-size: 12px;
+}

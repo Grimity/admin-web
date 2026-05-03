@@ -1,0 +1,163 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.root {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include mobile {
+    padding: 16px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.count {
+  font-size: 13px;
+  color: $color-text-muted;
+}
+
+.state {
+  padding: 16px 0;
+  text-align: center;
+  color: $color-text-muted;
+  font-size: 14px;
+}
+
+.error {
+  padding: 12px;
+  background: rgba($color-danger, 0.08);
+  border: 1px solid rgba($color-danger, 0.3);
+  color: $color-danger;
+  border-radius: $radius-md;
+  font-size: 14px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.commentItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid $color-border;
+
+  &:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+.commentRow {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.avatar,
+.avatarEmpty {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: $color-surface-hover;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metaLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.writerName {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.date {
+  font-size: 12px;
+  color: $color-text-muted;
+}
+
+.likeCount {
+  font-size: 12px;
+  color: $color-text-muted;
+  margin-left: auto;
+}
+
+.content {
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+
+.deletedContent {
+  font-size: 14px;
+  font-style: italic;
+  color: $color-text-muted;
+  margin: 0;
+}
+
+.children {
+  margin-left: 42px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 12px;
+  border-left: 2px solid $color-border;
+
+  @include mobile {
+    margin-left: 16px;
+  }
+}
+
+.childRow {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.mention {
+  color: $color-primary;
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.deletedBadge {
+  font-size: 11px;
+  color: $color-danger;
+  background: rgba($color-danger, 0.08);
+  border-radius: $radius-sm;
+  padding: 1px 6px;
+}

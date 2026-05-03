@@ -1,38 +1,44 @@
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useFeed } from '@/api/feeds/getFeed';
-import { FeedCommentList } from '@/components/FeedCommentList/FeedCommentList';
+import { usePost } from '@/api/posts/getPost';
+import { PostCommentList } from '@/components/PostCommentList/PostCommentList';
 import { formatDateTime } from '@/utils/formatDate';
-import styles from './FeedDetailPage.module.scss';
+import { POST_TYPE_LABEL } from '@/types/admin/post';
+import styles from './PostDetailPage.module.scss';
 
-export function FeedDetailPage() {
+export function PostDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const { data, isLoading, isError, error } = useFeed(id);
+  const { data, isLoading, isError, error } = usePost(id);
 
   const isNotFound = axios.isAxiosError(error) && error.response?.status === 404;
 
   return (
     <div className={styles.root}>
-      <Link to="/feeds" className={styles.backLink}>
+      <Link to="/posts" className={styles.backLink}>
         ← 목록으로
       </Link>
 
       {isLoading && <div className={styles.state}>불러오는 중...</div>}
 
       {isError && isNotFound && (
-        <div className={styles.notFound}>존재하지 않는 피드입니다.</div>
+        <div className={styles.notFound}>존재하지 않는 게시글입니다.</div>
       )}
 
       {isError && !isNotFound && (
         <div className={styles.error}>
-          피드를 불러오지 못했습니다. {(error as Error)?.message}
+          게시글을 불러오지 못했습니다. {(error as Error)?.message}
         </div>
       )}
 
       {data && (
         <article className={styles.article}>
           <header className={styles.header}>
-            <h1 className={styles.title}>{data.title}</h1>
+            <div className={styles.titleRow}>
+              <span className={`${styles.badge} ${styles[`badge_${data.type}`]}`}>
+                {POST_TYPE_LABEL[data.type]}
+              </span>
+              <h1 className={styles.title}>{data.title}</h1>
+            </div>
             <div className={styles.authorRow}>
               <div className={styles.author}>
                 {data.author.image ? (
@@ -50,32 +56,20 @@ export function FeedDetailPage() {
             <span>조회 {data.viewCount.toLocaleString()}</span>
             <span>좋아요 {data.likeCount.toLocaleString()}</span>
             <span>댓글 {data.commentCount.toLocaleString()}</span>
-            {data.album && <span className={styles.album}>앨범: {data.album.name}</span>}
           </div>
 
-          {data.cards.length > 0 && (
-            <div className={styles.cards}>
-              {data.cards.map((src, i) => (
-                <img key={i} className={styles.card} src={src} alt="" loading="lazy" />
-              ))}
-            </div>
+          {data.thumbnail && (
+            <img className={styles.thumbnail} src={data.thumbnail} alt="" loading="lazy" />
           )}
 
-          {data.content && <pre className={styles.content}>{data.content}</pre>}
-
-          {data.tags.length > 0 && (
-            <div className={styles.tags}>
-              {data.tags.map((tag) => (
-                <span key={tag} className={styles.tag}>
-                  #{tag}
-                </span>
-              ))}
-            </div>
-          )}
+          <div
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: data.content }}
+          />
         </article>
       )}
 
-      {data && <FeedCommentList feedId={data.id} />}
+      {data && <PostCommentList postId={data.id} />}
     </div>
   );
 }

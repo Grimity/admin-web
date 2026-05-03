@@ -1,0 +1,132 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.row {
+  display: flex;
+  gap: 16px;
+  padding: 12px;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: background 0.1s ease, border-color 0.1s ease;
+
+  &:hover {
+    background: $color-surface-hover;
+    border-color: #d1d5db;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.thumbWrap {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  background: $color-surface-hover;
+
+  @include mobile {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+.thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.thumbEmpty {
+  width: 100%;
+  height: 100%;
+  background: $color-surface-hover;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+.badge {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: $color-surface-hover;
+  color: $color-text-muted;
+  border: 1px solid $color-border;
+}
+
+.badge_NORMAL {
+  background: rgba($color-primary, 0.08);
+  color: $color-primary;
+  border-color: rgba($color-primary, 0.2);
+}
+
+.badge_QUESTION {
+  background: rgba(#f59e0b, 0.1);
+  color: #b45309;
+  border-color: rgba(#f59e0b, 0.25);
+}
+
+.badge_FEEDBACK {
+  background: rgba(#10b981, 0.1);
+  color: #047857;
+  border-color: rgba(#10b981, 0.25);
+}
+
+.badge_NOTICE {
+  background: rgba($color-danger, 0.08);
+  color: $color-danger;
+  border-color: rgba($color-danger, 0.25);
+}
+
+.author {
+  font-size: 13px;
+  color: $color-text-muted;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  color: $color-text-muted;
+  margin-top: auto;
+}
+
+.date {
+  margin-left: auto;
+
+  @include mobile {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,207 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.backLink {
+  font-size: 14px;
+  color: $color-text-muted;
+  align-self: flex-start;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.article {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include mobile {
+    padding: 16px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: $color-surface-hover;
+  color: $color-text-muted;
+  border: 1px solid $color-border;
+  margin-top: 4px;
+}
+
+.badge_NORMAL {
+  background: rgba($color-primary, 0.08);
+  color: $color-primary;
+  border-color: rgba($color-primary, 0.2);
+}
+
+.badge_QUESTION {
+  background: rgba(#f59e0b, 0.1);
+  color: #b45309;
+  border-color: rgba(#f59e0b, 0.25);
+}
+
+.badge_FEEDBACK {
+  background: rgba(#10b981, 0.1);
+  color: #047857;
+  border-color: rgba(#10b981, 0.25);
+}
+
+.badge_NOTICE {
+  background: rgba($color-danger, 0.08);
+  color: $color-danger;
+  border-color: rgba($color-danger, 0.25);
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  word-break: break-word;
+  flex: 1;
+  min-width: 0;
+}
+
+.authorRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar,
+.avatarEmpty {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: $color-surface-hover;
+  object-fit: cover;
+}
+
+.authorName {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.date {
+  font-size: 13px;
+  color: $color-text-muted;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: $color-text-muted;
+  padding: 12px 0;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+}
+
+.thumbnail {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: $radius-md;
+  background: $color-surface-hover;
+  display: block;
+}
+
+.content {
+  font-size: 15px;
+  line-height: 1.7;
+  word-break: break-word;
+  color: $color-text;
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+    border-radius: $radius-sm;
+    display: block;
+    margin: 12px 0;
+  }
+
+  p {
+    margin: 0 0 12px;
+  }
+
+  a {
+    color: $color-primary;
+    text-decoration: underline;
+  }
+
+  pre {
+    background: $color-surface-hover;
+    padding: 12px;
+    border-radius: $radius-sm;
+    overflow-x: auto;
+    font-size: 13px;
+  }
+
+  blockquote {
+    border-left: 3px solid $color-border;
+    padding-left: 12px;
+    color: $color-text-muted;
+    margin: 12px 0;
+  }
+}
+
+.state {
+  padding: 32px 0;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+.notFound {
+  padding: 32px 16px;
+  text-align: center;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  color: $color-text-muted;
+}
+
+.error {
+  padding: 16px;
+  background: rgba($color-danger, 0.08);
+  border: 1px solid rgba($color-danger, 0.3);
+  color: $color-danger;
+  border-radius: $radius-md;
+  font-size: 14px;
+}

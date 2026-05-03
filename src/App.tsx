@@ -5,6 +5,8 @@ import { ProtectedRoute } from '@/components/ProtectedRoute/ProtectedRoute';
 import { LoginPage } from '@/pages/LoginPage/LoginPage';
 import { FeedListPage } from '@/pages/FeedListPage/FeedListPage';
 import { FeedDetailPage } from '@/pages/FeedDetailPage/FeedDetailPage';
+import { PostListPage } from '@/pages/PostListPage/PostListPage';
+import { PostDetailPage } from '@/pages/PostDetailPage/PostDetailPage';
 import { PlaceholderPage } from '@/pages/PlaceholderPage/PlaceholderPage';
 
 const queryClient = new QueryClient({
@@ -29,7 +31,8 @@ function App() {
               <Route path="/feeds" element={<FeedListPage />} />
               <Route path="/feeds/:id" element={<FeedDetailPage />} />
               <Route path="/feed-comments" element={<PlaceholderPage title="피드 댓글" />} />
-              <Route path="/posts" element={<PlaceholderPage title="게시글" />} />
+              <Route path="/posts" element={<PostListPage />} />
+              <Route path="/posts/:id" element={<PostDetailPage />} />
               <Route
                 path="/post-comments"
                 element={<PlaceholderPage title="게시글 댓글" />}
