@@ -89,6 +89,29 @@
   min-width: 0;
 }
 
+.deleteButton {
+  flex-shrink: 0;
+  background: transparent;
+  color: $color-danger;
+  border: 1px solid rgba($color-danger, 0.4);
+  border-radius: $radius-sm;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.1s ease, border-color 0.1s ease;
+
+  &:hover:not(:disabled) {
+    background: rgba($color-danger, 0.08);
+    border-color: $color-danger;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
 .authorRow {
   display: flex;
   align-items: center;

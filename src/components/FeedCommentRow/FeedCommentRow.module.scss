@@ -123,4 +123,27 @@
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
+  flex: 1;
+}
+
+.deleteButton {
+  flex-shrink: 0;
+  font: inherit;
+  font-size: 12px;
+  padding: 2px 8px;
+  background: none;
+  border: 1px solid rgba($color-danger, 0.4);
+  border-radius: $radius-sm;
+  color: $color-danger;
+  cursor: pointer;
+  transition: background 0.1s ease;
+
+  &:hover:not(:disabled) {
+    background: rgba($color-danger, 0.08);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

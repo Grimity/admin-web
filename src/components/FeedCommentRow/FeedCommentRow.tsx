@@ -2,7 +2,7 @@ import { formatDateTime } from '@/utils/formatDate';
 import styles from './FeedCommentRow.module.scss';
 import type { FeedCommentRowProps } from './FeedCommentRow.types';
 
-export function FeedCommentRow({ comment, onClick }: FeedCommentRowProps) {
+export function FeedCommentRow({ comment, onClick, onDelete, isDeleting }: FeedCommentRowProps) {
   const { feed, writer } = comment;
   const isReply = comment.parentId !== null;
 
@@ -41,6 +41,17 @@ export function FeedCommentRow({ comment, onClick }: FeedCommentRowProps) {
         <div className={styles.feedLine}>
           <span className={styles.feedLabel}>피드</span>
           <span className={styles.feedTitle}>{feed.title}</span>
+          <button
+            type="button"
+            className={styles.deleteButton}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(comment.id);
+            }}
+            disabled={isDeleting}
+          >
+            삭제
+          </button>
         </div>
       </div>
     </article>

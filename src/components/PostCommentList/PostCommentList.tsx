@@ -3,6 +3,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { usePostComments } from '@/api/postComments/getPostComments';
 import { postPostComment } from '@/api/postComments/postPostComment';
+import { deletePostComment } from '@/api/postComments/deletePostComment';
+import { ConfirmModal } from '@/components/ConfirmModal/ConfirmModal';
 import { formatDateTime } from '@/utils/formatDate';
 import type {
   AdminPostChildComment,
@@ -170,9 +172,13 @@ function CommentForm({
 function ChildCommentItem({
   comment,
   onReplyMention,
+  onDelete,
+  isDeleting,
 }: {
   comment: AdminPostChildComment;
   onReplyMention: (writer: AdminPostCommentWriter) => void;
+  onDelete: (commentId: string) => void;
+  isDeleting: boolean;
 }) {
   const { writer } = comment;
   return (
@@ -187,13 +193,23 @@ function ChildCommentItem({
           mentionedUser={comment.mentionedUser}
         />
         {writer && (
-          <button
-            type="button"
-            className={styles.replyButton}
-            onClick={() => onReplyMention(writer)}
-          >
-            @답글
-          </button>
+          <div className={styles.actionRow}>
+            <button
+              type="button"
+              className={styles.replyButton}
+              onClick={() => onReplyMention(writer)}
+            >
+              @답글
+            </button>
+            <button
+              type="button"
+              className={styles.deleteButton}
+              onClick={() => onDelete(comment.id)}
+              disabled={isDeleting}
+            >
+              삭제
+            </button>
+          </div>
         )}
       </div>
     </div>
@@ -206,12 +222,16 @@ function CommentItem({
   replyTarget,
   onOpenReply,
   onCloseReply,
+  onDelete,
+  isDeleting,
 }: {
   comment: AdminPostComment;
   postId: string;
   replyTarget: ReplyTarget | null;
   onOpenReply: (target: ReplyTarget) => void;
   onCloseReply: () => void;
+  onDelete: (commentId: string) => void;
+  isDeleting: boolean;
 }) {
   const isReplyOpen = replyTarget?.parentCommentId === comment.id;
 
@@ -227,15 +247,27 @@ function CommentItem({
             content={comment.content}
             isDeleted={comment.isDeleted}
           />
-          <button
-            type="button"
-            className={styles.replyButton}
-            onClick={() =>
-              isReplyOpen ? onCloseReply() : onOpenReply({ parentCommentId: comment.id })
-            }
-          >
-            {isReplyOpen ? '답글 취소' : '답글 달기'}
-          </button>
+          <div className={styles.actionRow}>
+            <button
+              type="button"
+              className={styles.replyButton}
+              onClick={() =>
+                isReplyOpen ? onCloseReply() : onOpenReply({ parentCommentId: comment.id })
+              }
+            >
+              {isReplyOpen ? '답글 취소' : '답글 달기'}
+            </button>
+            {!comment.isDeleted && (
+              <button
+                type="button"
+                className={styles.deleteButton}
+                onClick={() => onDelete(comment.id)}
+                disabled={isDeleting}
+              >
+                삭제
+              </button>
+            )}
+          </div>
         </div>
       </div>
       {comment.childComments.length > 0 && (
@@ -251,6 +283,8 @@ function CommentItem({
                   mentionedUserName: writer.name,
                 })
               }
+              onDelete={onDelete}
+              isDeleting={isDeleting}
             />
           ))}
         </div>
@@ -274,8 +308,37 @@ function CommentItem({
 }
 
 export function PostCommentList({ postId }: PostCommentListProps) {
+  const queryClient = useQueryClient();
   const { data, isLoading, isError, error } = usePostComments(postId);
   const [replyTarget, setReplyTarget] = useState<ReplyTarget | null>(null);
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
+
+  const deleteMutation = useMutation({
+    mutationFn: deletePostComment,
+    onSuccess: () => {
+      setPendingDeleteId(null);
+      queryClient.invalidateQueries({ queryKey: ['admin', 'post-comments', postId] });
+      queryClient.invalidateQueries({ queryKey: ['admin', 'post', postId] });
+    },
+    onError: (err) => {
+      setPendingDeleteId(null);
+      if (axios.isAxiosError(err) && err.response?.status === 404) {
+        alert('이미 삭제된 댓글입니다.');
+        queryClient.invalidateQueries({ queryKey: ['admin', 'post-comments', postId] });
+        return;
+      }
+      alert('댓글 삭제 중 오류가 발생했습니다.');
+    },
+  });
+
+  const handleDelete = (commentId: string) => {
+    setPendingDeleteId(commentId);
+  };
+
+  const handleConfirmDelete = () => {
+    if (!pendingDeleteId) return;
+    deleteMutation.mutate(pendingDeleteId);
+  };
 
   const totalCount = data
     ? data.reduce((sum, c) => sum + 1 + c.childComments.length, 0)
@@ -312,10 +375,21 @@ export function PostCommentList({ postId }: PostCommentListProps) {
               replyTarget={replyTarget}
               onOpenReply={setReplyTarget}
               onCloseReply={() => setReplyTarget(null)}
+              onDelete={handleDelete}
+              isDeleting={deleteMutation.isPending}
             />
           ))}
         </ul>
       )}
+
+      <ConfirmModal
+        open={pendingDeleteId !== null}
+        title="댓글 삭제"
+        message="이 댓글을 삭제하시겠습니까?"
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setPendingDeleteId(null)}
+        isPending={deleteMutation.isPending}
+      />
     </section>
   );
 }

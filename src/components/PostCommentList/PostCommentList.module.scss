@@ -296,6 +296,31 @@
   }
 }
 
+.actionRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.deleteButton {
+  font: inherit;
+  font-size: 12px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: $color-text-muted;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    color: $color-danger;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
 .replyFormWrapper {
   margin-left: 42px;
 
