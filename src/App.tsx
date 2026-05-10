@@ -8,7 +8,10 @@ import { FeedDetailPage } from '@/pages/FeedDetailPage/FeedDetailPage';
 import { FeedCommentListPage } from '@/pages/FeedCommentListPage/FeedCommentListPage';
 import { PostListPage } from '@/pages/PostListPage/PostListPage';
 import { PostDetailPage } from '@/pages/PostDetailPage/PostDetailPage';
+import { NoticeListPage } from '@/pages/NoticeListPage/NoticeListPage';
+import { NoticeDetailPage } from '@/pages/NoticeDetailPage/NoticeDetailPage';
 import { NoticeCreatePage } from '@/pages/NoticeCreatePage/NoticeCreatePage';
+import { NoticeEditPage } from '@/pages/NoticeEditPage/NoticeEditPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,7 +37,10 @@ function App() {
               <Route path="/feed-comments" element={<FeedCommentListPage />} />
               <Route path="/posts" element={<PostListPage />} />
               <Route path="/posts/:id" element={<PostDetailPage />} />
+              <Route path="/notices" element={<NoticeListPage />} />
               <Route path="/notices/new" element={<NoticeCreatePage />} />
+              <Route path="/notices/:id" element={<NoticeDetailPage />} />
+              <Route path="/notices/:id/edit" element={<NoticeEditPage />} />
             </Route>
           </Route>
           <Route path="*" element={<Navigate to="/feeds" replace />} />

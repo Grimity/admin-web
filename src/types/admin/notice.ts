@@ -6,3 +6,8 @@ export interface CreateNoticePayload {
 export interface CreateNoticeResponse {
   id: string;
 }
+
+export interface UpdateNoticePayload {
+  title: string;
+  content: string;
+}

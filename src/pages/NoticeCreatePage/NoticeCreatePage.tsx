@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { postNotice } from '@/api/notices/postNotice';
@@ -15,8 +15,8 @@ export function NoticeCreatePage() {
   const mutation = useMutation({
     mutationFn: postNotice,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['posts'] });
-      navigate('/posts');
+      queryClient.invalidateQueries({ queryKey: ['admin', 'posts'] });
+      navigate('/notices');
     },
   });
 
@@ -36,6 +36,9 @@ export function NoticeCreatePage() {
 
   return (
     <div className={styles.root}>
+      <Link to="/notices" className={styles.backLink}>
+        ← 목록으로
+      </Link>
       <header className={styles.header}>
         <h1 className={styles.title}>공지사항 작성</h1>
       </header>

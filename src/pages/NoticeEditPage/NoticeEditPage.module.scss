@@ -78,6 +78,21 @@
   }
 }
 
+.state {
+  padding: 32px 0;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+.notFound {
+  padding: 32px 16px;
+  text-align: center;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  color: $color-text-muted;
+}
+
 .error {
   padding: 12px 14px;
   background: rgba($color-danger, 0.08);

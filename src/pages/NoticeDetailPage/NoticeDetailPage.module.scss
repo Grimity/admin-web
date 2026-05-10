@@ -1,0 +1,231 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.backLink {
+  font-size: 14px;
+  color: $color-text-muted;
+  align-self: flex-start;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.article {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include mobile {
+    padding: 16px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba($color-danger, 0.08);
+  color: $color-danger;
+  border: 1px solid rgba($color-danger, 0.25);
+  margin-top: 4px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  word-break: break-word;
+  flex: 1;
+  min-width: 0;
+}
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.editButton {
+  background: $color-primary;
+  color: #fff;
+  border: 1px solid $color-primary;
+  border-radius: $radius-sm;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.1s ease;
+
+  &:hover {
+    background: $color-primary-hover;
+    border-color: $color-primary-hover;
+  }
+}
+
+.deleteButton {
+  background: transparent;
+  color: $color-danger;
+  border: 1px solid rgba($color-danger, 0.4);
+  border-radius: $radius-sm;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.1s ease, border-color 0.1s ease;
+
+  &:hover:not(:disabled) {
+    background: rgba($color-danger, 0.08);
+    border-color: $color-danger;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.authorRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar,
+.avatarEmpty {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: $color-surface-hover;
+  object-fit: cover;
+}
+
+.authorName {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.date {
+  font-size: 13px;
+  color: $color-text-muted;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: $color-text-muted;
+  padding: 12px 0;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+}
+
+.thumbnail {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: $radius-md;
+  background: $color-surface-hover;
+  display: block;
+}
+
+.content {
+  font-size: 15px;
+  line-height: 1.7;
+  word-break: break-word;
+  color: $color-text;
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+    border-radius: $radius-sm;
+    display: block;
+    margin: 12px 0;
+  }
+
+  p {
+    margin: 0 0 12px;
+  }
+
+  a {
+    color: $color-primary;
+    text-decoration: underline;
+  }
+
+  pre {
+    background: $color-surface-hover;
+    padding: 12px;
+    border-radius: $radius-sm;
+    overflow-x: auto;
+    font-size: 13px;
+  }
+
+  blockquote {
+    border-left: 3px solid $color-border;
+    padding-left: 12px;
+    color: $color-text-muted;
+    margin: 12px 0;
+  }
+}
+
+.state {
+  padding: 32px 0;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+.notFound {
+  padding: 32px 16px;
+  text-align: center;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  color: $color-text-muted;
+}
+
+.error {
+  padding: 16px;
+  background: rgba($color-danger, 0.08);
+  border: 1px solid rgba($color-danger, 0.3);
+  color: $color-danger;
+  border-radius: $radius-md;
+  font-size: 14px;
+}

@@ -6,7 +6,7 @@ const NAV_ITEMS: SidebarNavItem[] = [
   { to: '/feeds', label: '피드' },
   { to: '/feed-comments', label: '피드 댓글' },
   { to: '/posts', label: '게시글' },
-  { to: '/notices/new', label: '공지사항 작성' },
+  { to: '/notices', label: '공지사항' },
 ];
 
 export function Sidebar({ open, isMobile, onClose, onLogout }: SidebarProps) {
